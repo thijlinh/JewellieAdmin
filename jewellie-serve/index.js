@@ -6,10 +6,6 @@ const port = 3000;
 const db = require('./config/db');
 db.connect();
 
-//http request logger nhận yêu cầu từ phía client
-const morgan = require('morgan');
-app.use(morgan('combined'));
-
 
 app.get('/', (req, res) => {
     res.send("Hello")

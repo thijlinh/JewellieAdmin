@@ -1,0 +1,95 @@
+<mat-drawer-container class="drawer-container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <p>Logo</p>
+        <h2>ADMIN PAGE</h2>
+        <p>Quản lý sản phẩm</p>
+        <p>Quản lý khách hàng</p>
+        <p>Thông báo</p>
+    </mat-drawer>
+
+    <div class="sidenav-content">
+        <button class="btn-menu" aria-label="Example icon button with a menu icon" type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+        </button>
+        <input class="search-bar" type="text" placeholder="Tìm kiếm">
+        <p class="name-account">Account</p>
+        <mat-icon class="icon-account" aria-hidden="false" >account_circle</mat-icon>
+    </div>
+
+    <hr style="margin-top: 20px">
+
+    <div style="margin-left: 20px; margin-right: 40px">
+        <span>Sản phẩm: </span> <span>Tất cả (20)</span>
+        <button mat-raised-button class="btn-add" color="primary">Thêm mới</button>
+    </div>
+
+    <div style="margin-left: 20px; margin-right: 40px; margin-top: 30px; display: flex">
+        <button mat-raised-button class="btn-select" color="primary">Chọn danh mục</button>
+        <!-- <h4>Basic mat-select</h4> -->
+        <!-- <mat-form-field appearance="fill">
+          <mat-label>Chọn danh mục</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let category of categories" [value]="category.value">
+              {{category.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+        <button mat-raised-button class="btn-status" color="primary">Trạng thái kho</button>
+        <button mat-raised-button class="btn-filter" color="primary">Lọc</button>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id} </td>
+        </ng-container>
+      
+        <!-- Image Column -->
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef> Hình </th>
+          <td mat-cell *matCellDef="let element"> {{element.image}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Tên </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Category Column -->
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef> Danh mục </th>
+          <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Giá </th>
+          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <!-- Warehouse Column -->
+        <ng-container matColumnDef="warehouse">
+          <th mat-header-cell *matHeaderCellDef> Kho </th>
+          <td mat-cell *matCellDef="let element"> {{element.warehouse}} </td>
+        </ng-container>
+
+        <!-- Edit Column -->
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef> Sửa </th>
+          <td mat-cell *matCellDef="let element"> {{element.edit}} </td>
+        </ng-container>
+
+                
+        <!-- Delete Column -->
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Xóa </th>
+            <td mat-cell *matCellDef="let element"> {{element.delete}} </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </mat-drawer-container>

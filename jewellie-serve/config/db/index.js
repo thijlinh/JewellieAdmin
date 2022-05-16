@@ -1,17 +1,16 @@
-// const { config } = require('dotenv');
 const mongoose = require('mongoose');
 require('dotenv/config')
 
 async function connect() {
     try {
-        await mongoose.connect(process.env.DB_URL, {
+        await mongoose.connect('mongodb://localhost:27017/jewellie', {
             useNewUrlParser: true,
-            useUnifiedTopology: true,
+            useUnifiedTopology: true
         });
-        console.log("Successfull");
+        console.log("Connected successfully")
+
     } catch (err) {
-        console.log({ "Error": err.message })
+        console.log("Error", err.message);
     }
 }
-
 module.exports = { connect }

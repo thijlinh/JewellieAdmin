@@ -11,7 +11,6 @@ const baseUrl = "http://localhost:5000";
 })
 export class Service {
 
-  // url_api: string = "http://localhost:3000/products"
   
   constructor(private _http: HttpClient) { }
 // Dữ liệu trả về Observable

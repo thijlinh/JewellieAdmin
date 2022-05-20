@@ -13,13 +13,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+import { AddProductComponent } from './add-product/add-product.component';
 
 
 
 @NgModule({
   declarations: [
   AppComponent,
-  GetProductComponent
+  GetProductComponent,
+  AddProductComponent
   ],
   imports: [
     BrowserModule,

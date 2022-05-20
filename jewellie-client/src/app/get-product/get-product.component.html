@@ -3,8 +3,7 @@
     <p>Logo</p>
     <h2>ADMIN PAGE</h2>
     <p>Quản lý sản phẩm</p>
-    <p>Quản lý khách hàng</p>
-    <p>Thông báo</p>
+    <p>Quản lý Blog</p>
   </mat-drawer>
 
   <div class="sidenav-content">
@@ -20,12 +19,24 @@
   <hr style="margin-top: 20px">
 
   <div style="margin-left: 20px; margin-right: 40px">
-    <span>Sản phẩm: </span> <span>Tất cả (20)</span>
+    <span>Sản phẩm: </span> <span>Tất cả (42)</span>
     <button mat-raised-button class="btn-add" color="primary">Thêm mới</button>
+    <button mat-raised-button class="btn-watch" color="primary">Xem trước</button>
   </div>
 
   <div style="margin-left: 20px; margin-right: 40px; margin-top: 30px; display: flex">
-    <button mat-raised-button class="btn-select" color="primary">Chọn danh mục</button>
+    <!-- <button mat-raised-button class="btn-select" color="primary">Chọn danh mục</button> -->
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Chọn danh mục
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <li><a href="#">Dây Chuyền</a></li>
+        <li><a href="#">Lắc Bạc</a></li>
+        <li><a href="#">Nhẫn</a></li>
+        <li><a href="#">Bông tai</a></li>
+      </ul>
+    </div>
     <!-- <h4>Basic mat-select</h4> -->
     <!-- <mat-form-field appearance="fill">
           <mat-label>Chọn danh mục</mat-label>
@@ -35,7 +46,6 @@
             </mat-option>
           </mat-select>
         </mat-form-field> -->
-    <button mat-raised-button class="btn-status" color="primary">Trạng thái kho</button>
     <button mat-raised-button class="btn-filter" color="primary">Lọc</button>
   </div>
 
@@ -47,23 +57,23 @@
       <thead>
         <tr>
           <th>ID</th>
+          <th>Hình</th>
           <th>Tên</th>
+          <th>Danh muc</th>
           <th>Giá</th>
-          <th></th>
-          <th></th>
+          <th>Sửa</th>
+          <th>Xóa</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let product of products; let i = index">
           <td scope="row" class="font-weight-bold">{{ i + 1 }}</td>
-          <td>{{ product.Ten }}</td>
+          <td>{{ product.Hinh}}</td>
+          <td>{{ product.Ten}}</td>
+          <td>{{ product.Loai}}</td>
           <td>{{ product.Gia}}</td>
-          <td>
-          </td>
-          <td>
-              <!-- <i class="fa fa-trash-alt"></i> -->
-              <i class="bi bi-trash"></i>
-          </td>
+          <td><i class="bi bi-pencil-square"></i></td>
+          <td><i class="bi bi-trash"></i></td>
         </tr>
       </tbody>
     </table>

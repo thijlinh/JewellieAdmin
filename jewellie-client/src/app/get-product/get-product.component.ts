@@ -71,7 +71,11 @@ export class GetProductComponent implements OnInit {
   // dataSource = ELEMENT_DATA;
 
   constructor(private _service: Service, private _toast:ToastrService
-    ) { }
+    ) {
+      this._service = _service;
+      console.log('this._service')
+      console.log(this._service)
+     }
   ngOnInit(): void {
     this.getAllProducts()
   }

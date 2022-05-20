@@ -59,7 +59,17 @@
       background-color: #653F37;
       padding: 10px 40px;
       border-radius: 10px;
+      margin-left: 20px;
   }
+  .btn-watch{
+      float: right;
+      border: 0px;
+      color: white;
+      background-color: #653F37;
+      padding: 10px 40px;
+      border-radius: 10px;
+  }
+
   .btn-select, .btn-status{
     background-color: white;
     padding: 10px 40px;

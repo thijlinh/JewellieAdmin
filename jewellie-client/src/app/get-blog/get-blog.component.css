@@ -1,3 +1,4 @@
+
 .drawer-container {
     width: 100%;
     height: 100%;
@@ -68,14 +69,24 @@
       padding: 10px 40px;
       border-radius: 10px;
   }
-  .btn-side{
-    width: 100%;
-    background-color: #653F37;
-    border: none;
-    color: white;
-    text-align: left;
+
+  .btn-select, .btn-status{
+    background-color: white;
+    padding: 10px 40px;
+    border-radius: 10px;
+    margin-right: 20px;
+    border: 1px solid #653F37;
   }
-  .btn-side:active{
-    background-color: #301e1a;
-    width: 100%;
+  .btn-filter{
+    color: white;
+    background-color: #653F37;
+    padding: 10px 40px;
+    border-radius: 10px;
+    margin-left: auto;
+  }
+  table {
+    width: 95%;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 40px;
   }

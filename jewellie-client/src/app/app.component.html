@@ -1,1 +1,29 @@
+<!-- Sidebar -->
+<mat-drawer-container class="drawer-container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+      <p>Logo</p>
+      <h2>ADMIN PAGE</h2>
+      <p class="btn-side"><button type="button" class="btn-side">Quản lý sản phẩm</button></p>
+      <p><button type="button" class="btn-side">Quản lý Blog</button></p>
+    </mat-drawer>
+  
+    <div class="sidenav-content">
+      <button class="btn-menu" aria-label="Example icon button with a menu icon" type="button" mat-button
+        (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <input class="search-bar" type="text" placeholder="Tìm kiếm">
+      <p class="name-account">Account</p>
+      <mat-icon class="icon-account" aria-hidden="false">account_circle</mat-icon>
+    </div>
+  
+    <hr style="margin-top: 20px">
+  
+    <div style="margin-left: 20px; margin-right: 40px">
+      <span>Sản phẩm: </span> <span>Tất cả (42)</span>
+      <button mat-raised-button class="btn-add" color="primary">Thêm mới</button>
+      <button mat-raised-button class="btn-watch" color="primary">Xem trước</button>
+    </div>
+<!-- Table -->
 <app-get-product></app-get-product>
+<!-- <app-get-blog></app-get-blog> -->

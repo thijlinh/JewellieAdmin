@@ -1,0 +1,42 @@
+[ 
+    { "firstName": "anh",
+        "lastName":"duong",
+        "resgiterDate":"09/06/2022",
+        "email":"anhdnm@gmail.com",
+        "phone":"0332768796",
+        "password":"alo",
+        "country":"vien nam",
+        "totalOrder":"30"
+
+    },
+    {
+        "firstName":"thao",
+        "lastName":"vo",
+        "resgiterDate":"01/01/2022",
+        "email":"thaovt@gmail.com",
+        "phone":"0976829374",
+        "password":"alo",
+        "country":"vien nam",
+        "totalOrder":"30"
+    },
+    {
+        "firstName":"trang",
+        "lastName":"nguyen",
+        "resgiterDate":"02/02/2022",
+        "email":"trangntdg@gmail.com",
+        "phone":"0998227384",
+        "password":"alo",
+        "country":"vien nam",
+        "totalOrder":"30"
+    },
+    {
+        "firstName":"linh",
+        "lastName":"nguyen",
+        "resgiterDate":"03/03/2022",
+        "email":"linhntt@gmail.com",
+        "phone":"0332848994",
+        "password":"alo",
+        "country":"vien nam",
+        "totalOrder":"30"
+    }
+]

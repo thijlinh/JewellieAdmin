@@ -15,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { AddProductComponent } from './add-product/add-product.component';
 import { GetBlogComponent } from './get-blog/get-blog.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 
@@ -23,7 +24,8 @@ import { GetBlogComponent } from './get-blog/get-blog.component';
   AppComponent,
   GetProductComponent,
   AddProductComponent,
-  GetBlogComponent
+  GetBlogComponent,
+  SignInComponent
   ],
   imports: [
     BrowserModule,

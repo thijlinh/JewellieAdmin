@@ -1,4 +1,31 @@
+<mat-drawer-container class="drawer-container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <p>Logo</p>
+    <h2>ADMIN PAGE</h2>
+    <p>Quản lý sản phẩm</p>
+    <p>Quản lý Blog</p>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <button class="btn-menu" aria-label="Example icon button with a menu icon" type="button" mat-button
+      (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <input class="search-bar" type="text" placeholder="Tìm kiếm">
+    <p class="name-account">Account</p>
+    <mat-icon class="icon-account" aria-hidden="false">account_circle</mat-icon>
+  </div>
+
+  <hr style="margin-top: 20px">
+
+  <div style="margin-left: 20px; margin-right: 40px">
+    <span>Sản phẩm: </span> <span>Tất cả (42)</span>
+    <button mat-raised-button class="btn-add" color="primary">Thêm mới</button>
+    <button mat-raised-button class="btn-watch" color="primary">Xem trước</button>
+  </div>
+
   <div style="margin-left: 20px; margin-right: 40px; margin-top: 30px; display: flex">
+    <!-- <button mat-raised-button class="btn-select" color="primary">Chọn danh mục</button> -->
     <div class="dropdown">
       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Chọn danh mục
       <span class="caret"></span></button>
@@ -10,10 +37,70 @@
         <li><a href="#">Bông tai</a></li>
       </ul>
     </div>
+    <!-- <h4>Basic mat-select</h4> -->
+    <!-- <mat-form-field appearance="fill">
+          <mat-label>Chọn danh mục</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let category of categories" [value]="category.value">
+              {{category.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
     <button mat-raised-button class="btn-filter" color="primary">Lọc</button>
   </div>
+  <!-- id="form-update"  class="update-product" -->
+   <!-- Update Product Info -->
+   <form #productForm="ngForm" (ngSubmit)="submitForm(productForm)"  >
+    <h4 class="" >Cập nhật sản phẩm</h4>
+     <input value="" [(ngModel)]="product['_id']" 
+        type="hidden"name="_id" 
+      />
+    <!-- Name -->
+    <div class="form-group">
+      <label for="ten">Tên sản phẩm</label>
+      <input [(ngModel)]="product.ten"
+        type="text"
+        class="form-control"
+        name="ten"
+        id="ten"
+        aria-describedby="helpId"
+        placeholder="Enter product name"
+      />
+      <small id="helpId" class="form-text text-muted"></small>
+    </div>
+    <!-- Price -->
+    <div class="form-group">
+      <label for="gia">Giá</label>
+      <input value="" [(ngModel)]="product.gia"
+        type="number"
+        class="form-control"
+        name="gia"
+        id="gia"
+        aria-describedby="helpId"
+        placeholder=""
+      />
+      <small id="helpId" class="form-text text-muted"></small>
+    </div>
+    <div class="mb-3">
+      <input type="file" class="form-control" (change)="onSelectFile($event)">
+  </div>
+  <div class="mb-3">
+      <button type="submit" class="btn btn-primary" [disabled]="testForm.invalid || !file">Upload</button>
+  </div>
+    <!-- Button -->
+    <div class="form-group text-end mt-3">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <!-- (click)="resetForm()" Chỉ cần type="reset" là làm dc-->
+      <button 
+        type="reset"
+        class="btn btn-secondary"
+        [style]="{ 'margin-left': '10px' }"
+      >
+        Reset
+      </button>
+    </div>
+  </form>
 
-  
   <!-- Product List Table -->
   <div class="list-product">
 
@@ -32,13 +119,80 @@
       <tbody>
         <tr *ngFor="let product of products; let i = index">
           <td scope="row" class="font-weight-bold">{{ i + 1 }}</td>
-          <td>{{ product.Hinh}}</td>
-          <td>{{ product.Ten}}</td>
-          <td>{{ product.Loai}}</td>
-          <td>{{ product.Gia}}</td>
-          <td><i class="bi bi-pencil-square"></i></td>
-          <td><i class="bi bi-trash"></i></td>
+          <td>{{ product.hinh}}</td>
+          <td>{{ product.ten}}</td>
+          <td>{{ product.loai}}</td>
+          <td>{{ product.gia}}</td>
+          <td>  <button (click)="onEdit(product)" [style]="{ 'border': 'none','outline': 'none','background-color': 'transparent'}">
+            <i class="fa fa-edit"></i> 
+            Edit</button></td>
+          <td> <button (click)="onDelete(product._id,productForm)" [style]="{ 'border': 'none','outline': 'none','background-color': 'transparent'}">
+            <!-- <i class="fa fa-trash-alt"></i> -->
+            <i class="bi bi-trash"></i>
+             Del
+            </button></td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"> -->
+  
+    <!-- ID Column -->
+    <!-- <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+   -->
+    <!-- Image Column -->
+    <!-- <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef> Hình </th>
+      <td mat-cell *matCellDef="let element"> {{element.image}} </td>
+    </ng-container>
+   -->
+    <!-- Name Column -->
+    <!-- <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Tên </th>
+      <td mat-cell *matCellDef="let element"> {{product.name}} </td>
+    </ng-container> -->
+  
+    <!-- Category Column -->
+    <!-- <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Danh mục </th>
+      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+    </ng-container> -->
+  
+    <!-- Price Column -->
+    <!-- <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Giá </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container> -->
+  
+    <!-- Warehouse Column -->
+    <!-- <ng-container matColumnDef="warehouse">
+      <th mat-header-cell *matHeaderCellDef> Kho </th>
+      <td mat-cell *matCellDef="let element"> {{element.warehouse}} </td>
+    </ng-container> -->
+  
+    <!-- Edit Column -->
+    <!-- <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef> Sửa </th>
+      <td mat-cell *matCellDef="let element"> {{element.edit}} </td>
+    </ng-container>
+   -->
+  
+    <!-- Delete Column -->
+    <!-- <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> Xóa </th>
+      <td mat-cell *matCellDef="let element"> {{element.delete}} </td>
+    </ng-container> -->
+  
+    <!-- <tr mat-header-row></tr>
+    <tr mat-row *matRowDef="let row; "></tr>
+  </table>
+  </mat-drawer-container> -->
+
+
+
+<!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+<!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->

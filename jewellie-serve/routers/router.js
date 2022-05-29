@@ -35,13 +35,16 @@ router.post('/product', async function (req, res) {
     // res.send("Server received data!")
 
     let product = new Product({
-        name: req.body.name,
-        price: req.body.price
+        ten: req.body.ten,
+        gia: req.body.gia
     })
     try {
         p = await product.save();
+        console.log('POST PRODUCT SUCESSFULLY');
         res.json({ message: 'success'})
     } catch (err) {
+        console.log('POST ERROR');
+        console.log(err.message);
         res.json({message: err.message})
     }
 

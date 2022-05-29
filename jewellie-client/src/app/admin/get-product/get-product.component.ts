@@ -28,10 +28,11 @@
 // }
 
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Product } from '../models/product';
-import { Service } from '../services/services.service';
+import { Product } from 'src/app/models/product';
+import { Service } from 'src/app/services/services.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
 
@@ -64,10 +65,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class GetProductComponent implements OnInit {
 
-  public testForm = this._formBuilder.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
-    file: ['']
-  })
+  // public testForm = this._formBuilder.group({
+  //   name: ['', [Validators.required, Validators.minLength(3)]],
+  //   file: ['']
+  // })
 
   products: any;
   product: Product=new Product();
@@ -78,22 +79,45 @@ export class GetProductComponent implements OnInit {
   // // columnsToDisplay = ['id', 'image', 'name', 'category', 'price', 'warehouse', 'edit', 'delete'];
   // dataSource = ELEMENT_DATA;
 
-  constructor(private _service: Service,private _formBuilder:FormBuilder, private _toast:ToastrService
-    ) {
-      this._service = _service;
-      console.log('this._service')
-      console.log(this._service)
-     }
+  constructor(private _service: Service,private activatedRoute: ActivatedRoute, private router: Router,  private _toast:ToastrService) {}
+
   ngOnInit(): void {
-    this.getAllProducts()
+      this.getAllProducts();
   }
+  // getAllProducts(){
+  //   this._service.getProducts().subscribe({
+  //     next: (data: any) => (this.products = data)
+  //   })
+  // }
 
   // Xử lý form update
   // Submit
   submitForm(form: NgForm){
-    if(this.product._id ==''){
 
+    if(this.product._id ==''){
       this._service.postProduct(this.product).subscribe(res => {
+        // let resData=JSON.parse(JSON.stringify(res))
+        if (res.message === 'success') {
+
+          // console.log('success');
+          this._toast.warning('Inserted successfully', 'Success!')
+          this.getAllProducts();
+        }
+        else {
+          console.log('error');
+        }
+      })
+    } else {
+      // Update Product
+      this._service.updateProduct(this.product._id, this.product).subscribe(res => {
+        let resData = JSON.parse(JSON.stringify(res));
+        if (resData.message === 'success') {
+         
+          // alert('success');
+          this._toast.success('Update successfully', 'Update!')
+
+          this.onReset()
+          this.getAllProducts()
         let resData = JSON.parse(JSON.stringify(res));
            if (resData.message === "success"){
             this._toast.success("Insert Successfully!", "Success!");
@@ -101,22 +125,8 @@ export class GetProductComponent implements OnInit {
            }else{
              alert("Fail!")
           }
-            })
-          }
-    else{
-      this._service.updateProduct(this.product._id, this.product).subscribe(res =>{
-        let resData = JSON.parse(JSON.stringify(res));
-        if(resData.message === "success"){
-          // alert("Updated Successfully!");
-          this._toast.success("Updated Successfully!", "Success!");
-          this.onReset();
-          this.getAllProducts();
-        }else{
-          alert("fail");
-        }
-      });
-    
-    }
+        }})
+      }
       
     }
 

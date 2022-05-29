@@ -1,10 +1,13 @@
 export class Product{
     _id: any;
-    name: string;
-    price: number;
+    ten: string;
+    hinh:any;
+    gia: number;
+    loai:string;
     constructor() {
         this._id = "";
-        this.name = "";
-        this.price = 0;
+        this.ten = "";
+        this.gia = 0;
+        this.loai="";
     }
 }

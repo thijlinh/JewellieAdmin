@@ -32,6 +32,8 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from '../models/product';
 import { Service } from '../services/services.service';
+import { FormBuilder, Validators } from '@angular/forms';
+
 
 // interface products {
 //   value: string;
@@ -62,15 +64,21 @@ import { Service } from '../services/services.service';
 })
 export class GetProductComponent implements OnInit {
 
+  public testForm = this._formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    file: ['']
+  })
+
   products: any;
   product: Product=new Product();
   errorMessage: string = "";
+  file: any = null;
 
   // displayedColumns: string[] = ['id', 'image', 'name', 'category', 'price', 'warehouse', 'edit', 'delete'];
   // // columnsToDisplay = ['id', 'image', 'name', 'category', 'price', 'warehouse', 'edit', 'delete'];
   // dataSource = ELEMENT_DATA;
 
-  constructor(private _service: Service, private _toast:ToastrService
+  constructor(private _service: Service,private _formBuilder:FormBuilder, private _toast:ToastrService
     ) {
       this._service = _service;
       console.log('this._service')
@@ -82,40 +90,44 @@ export class GetProductComponent implements OnInit {
 
   // Xử lý form update
   // Submit
-  submitForm(form: NgForm) {
-    // console.log("form: ", form.value)
-    // console.log(this.product)
-    if (this.product._id == '') {
+  submitForm(form: NgForm){
+    if(this.product._id ==''){
+
       this._service.postProduct(this.product).subscribe(res => {
-        // let resData=JSON.parse(JSON.stringify(res))
-        if (res.message === 'success') {
-
-          // console.log('success');
-          this._toast.warning('Inserted successfully', 'Success!')
-          this.getAllProducts();
-        }
-        else {
-          console.log('error');
-        }
-      })
-    } else {
-      // Update Product
-      this._service.updateProduct(this.product._id, this.product).subscribe(res => {
         let resData = JSON.parse(JSON.stringify(res));
-        if (resData.message === 'success') {
-         
-          // alert('success');
-          this._toast.success('Update successfully', 'Update!')
-
-          this.onReset()
-          this.getAllProducts()
+           if (resData.message === "success"){
+            this._toast.success("Insert Successfully!", "Success!");
+             this.getAllProducts();
+           }else{
+             alert("Fail!")
+          }
+            })
+          }
+    else{
+      this._service.updateProduct(this.product._id, this.product).subscribe(res =>{
+        let resData = JSON.parse(JSON.stringify(res));
+        if(resData.message === "success"){
+          // alert("Updated Successfully!");
+          this._toast.success("Updated Successfully!", "Success!");
+          this.onReset();
+          this.getAllProducts();
+        }else{
+          alert("fail");
         }
-        else {
-          alert(resData.message);
-        }
-      })
+      });
+    
     }
-  }
+      
+    }
+
+    onSelectFile(event:any){
+      if ( event.target.files.length > 0){
+        // console.log("File info: ",event.target.files[0])
+        this.file = event.target.files[0];
+      }else{
+        this.file = null;
+      }
+      }
   // Nút edit 
   onEdit(data: Product) {
       this.product=data;

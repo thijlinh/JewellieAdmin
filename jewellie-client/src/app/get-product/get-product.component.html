@@ -48,8 +48,59 @@
         </mat-form-field> -->
     <button mat-raised-button class="btn-filter" color="primary">Lọc</button>
   </div>
+  <!-- id="form-update"  class="update-product" -->
+   <!-- Update Product Info -->
+   <form #productForm="ngForm" (ngSubmit)="submitForm(productForm)"  >
+    <h4 class="" >Cập nhật sản phẩm</h4>
+     <input value="" [(ngModel)]="product['_id']" 
+        type="hidden"name="_id" 
+      />
+    <!-- Name -->
+    <div class="form-group">
+      <label for="ten">Tên sản phẩm</label>
+      <input [(ngModel)]="product.ten"
+        type="text"
+        class="form-control"
+        name="ten"
+        id="ten"
+        aria-describedby="helpId"
+        placeholder="Enter product name"
+      />
+      <small id="helpId" class="form-text text-muted"></small>
+    </div>
+    <!-- Price -->
+    <div class="form-group">
+      <label for="gia">Giá</label>
+      <input value="" [(ngModel)]="product.gia"
+        type="number"
+        class="form-control"
+        name="gia"
+        id="gia"
+        aria-describedby="helpId"
+        placeholder=""
+      />
+      <small id="helpId" class="form-text text-muted"></small>
+    </div>
+    <div class="mb-3">
+      <input type="file" class="form-control" (change)="onSelectFile($event)">
+  </div>
+  <div class="mb-3">
+      <button type="submit" class="btn btn-primary" [disabled]="testForm.invalid || !file">Upload</button>
+  </div>
+    <!-- Button -->
+    <div class="form-group text-end mt-3">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <!-- (click)="resetForm()" Chỉ cần type="reset" là làm dc-->
+      <button 
+        type="reset"
+        class="btn btn-secondary"
+        [style]="{ 'margin-left': '10px' }"
+      >
+        Reset
+      </button>
+    </div>
+  </form>
 
-  
   <!-- Product List Table -->
   <div class="list-product">
 
@@ -68,12 +119,18 @@
       <tbody>
         <tr *ngFor="let product of products; let i = index">
           <td scope="row" class="font-weight-bold">{{ i + 1 }}</td>
-          <td>{{ product.Hinh}}</td>
-          <td>{{ product.Ten}}</td>
-          <td>{{ product.Loai}}</td>
-          <td>{{ product.Gia}}</td>
-          <td><i class="bi bi-pencil-square"></i></td>
-          <td><i class="bi bi-trash"></i></td>
+          <td>{{ product.hinh}}</td>
+          <td>{{ product.ten}}</td>
+          <td>{{ product.loai}}</td>
+          <td>{{ product.gia}}</td>
+          <td>  <button (click)="onEdit(product)" [style]="{ 'border': 'none','outline': 'none','background-color': 'transparent'}">
+            <i class="fa fa-edit"></i> 
+            Edit</button></td>
+          <td> <button (click)="onDelete(product._id,productForm)" [style]="{ 'border': 'none','outline': 'none','background-color': 'transparent'}">
+            <!-- <i class="fa fa-trash-alt"></i> -->
+            <i class="bi bi-trash"></i>
+             Del
+            </button></td>
         </tr>
       </tbody>
     </table>

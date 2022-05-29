@@ -14,6 +14,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { AddProductComponent } from './add-product/add-product.component';
+import { GetBlogComponent } from './get-blog/get-blog.component';
 
 
 
@@ -21,7 +22,8 @@ import { AddProductComponent } from './add-product/add-product.component';
   declarations: [
   AppComponent,
   GetProductComponent,
-  AddProductComponent
+  AddProductComponent,
+  GetBlogComponent
   ],
   imports: [
     BrowserModule,

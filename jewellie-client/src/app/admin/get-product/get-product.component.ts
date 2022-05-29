@@ -28,10 +28,11 @@
 // }
 
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Product } from '../models/product';
-import { Service } from '../services/services.service';
+import { Product } from 'src/app/models/product'
+import { Service } from 'src/app/services/services.service';
 
 // interface products {
 //   value: string;
@@ -70,15 +71,22 @@ export class GetProductComponent implements OnInit {
   // // columnsToDisplay = ['id', 'image', 'name', 'category', 'price', 'warehouse', 'edit', 'delete'];
   // dataSource = ELEMENT_DATA;
 
-  constructor(private _service: Service, private _toast:ToastrService
-    ) {
-      this._service = _service;
-      console.log('this._service')
-      console.log(this._service)
-     }
+  // constructor(private _service: Service, private _toast:ToastrService
+  //   ) {
+  //     this._service = _service;
+  //     console.log('this._service')
+  //     console.log(this._service)
+  //    }
+
+  constructor( private activatedRoute: ActivatedRoute, private router: Router, private _service:Service, private _toastr: ToastrService) { }
   ngOnInit(): void {
-    this.getAllProducts()
+    this.getAllProducts();
   }
+  // getAllProducts(){
+  //   this._service.getProducts().subscribe({
+  //     next: (data: any) => (this.products = data)
+  //   })
+  // }
 
   // Xử lý form update
   // Submit
@@ -91,7 +99,7 @@ export class GetProductComponent implements OnInit {
         if (res.message === 'success') {
 
           // console.log('success');
-          this._toast.warning('Inserted successfully', 'Success!')
+          this._toastr.warning('Inserted successfully', 'Success!')
           this.getAllProducts();
         }
         else {
@@ -105,7 +113,7 @@ export class GetProductComponent implements OnInit {
         if (resData.message === 'success') {
          
           // alert('success');
-          this._toast.success('Update successfully', 'Update!')
+          this._toastr.success('Update successfully', 'Update!')
 
           this.onReset()
           this.getAllProducts()
@@ -133,7 +141,7 @@ export class GetProductComponent implements OnInit {
         let resData = JSON.parse(JSON.stringify(res));
         if (resData.message === 'success') {
           // alert('Delete successfully');
-          this._toast.success('Delete successfully','Delete!')
+          this._toastr.success('Delete successfully','Delete!')
 
           this.onReset(form)
           this.getAllProducts()

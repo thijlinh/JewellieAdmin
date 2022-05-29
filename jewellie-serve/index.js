@@ -19,7 +19,8 @@ app.get('/', (req, res) => {
 const Router = require('./routers/router')
 app.use("/",Router)
 
-app.listen(port, () => {
+
+app.listen(port, async () => {
     console.log(`My serve listing on port ${port}`)
 })
 

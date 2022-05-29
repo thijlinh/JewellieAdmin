@@ -1,10 +1,4 @@
 export interface IUser{
-    firstName:  String ,
-    lastName:  String,
-    resgiterDate :String,
-    email:  String,
-    phone:Number,
+    username:  String,
     password:  String,
-    country: String,
-    totalOrder : String
   }

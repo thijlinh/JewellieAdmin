@@ -39,17 +39,12 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-  AppComponent,
-  GetProductComponent,
-  AddProductComponent,
-  GetBlogComponent,
-  SignInComponent,
-    [
-      AddProductComponent,
-      AdminComponent,
-      GetBlogComponent,
-      GetProductComponent
-    ],
+    AppComponent,
+    SignInComponent,
+    AddProductComponent,
+    AdminComponent,
+    GetBlogComponent,
+    GetProductComponent, 
   ],
   imports: [
     BrowserModule,

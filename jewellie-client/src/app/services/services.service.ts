@@ -4,6 +4,9 @@ import { catchError, Observable, retry, throwError } from 'rxjs';
 import { IProduct } from '../interfaces/Product';
 import { Product } from '../models/product';
 
+import { IUser } from '../interfaces/User';
+import { User } from '../models/users';
+
 const baseUrl = "http://localhost:5000";
 
 @Injectable({
@@ -55,4 +58,12 @@ export class Service {
   handleError(error: HttpErrorResponse) {
     return throwError(() => new Error(error.message))
   }
+
+  // ******************* USER *************************
+
+  // Post User
+  authenticate(data: User): Observable<any> {
+    return this._http.post<User>(`${baseUrl}/authenticate`,data)
+  }
+
 }

@@ -3,6 +3,7 @@ const router = express.Router();
 
 // Import models 
 const Product=require('../models/product')
+const User = require('../models/User');
 
 
 router.get('/', function (req, res) {
@@ -71,6 +72,30 @@ router.delete('/:productId', async (req, res) => {
     } catch (err) {
         res.json({ message:err.message})
     }
+})
+
+
+// ********************* USER **************************
+// Insert product by id
+router.post('/authenticate', async function (req, res) {
+    try {
+
+        const data = await User.findOne({
+            'username': req.body.username,
+            'password' : req.body.password
+        })
+        if(data == null){
+            res.json({message: 'Đăng nhập không thành công'})
+        } else {
+            res.json({ message: 'success'})
+        }
+
+    } catch (err) {
+        console.log('POST ERROR');
+        console.log(err.message);
+        res.json({message: err.message})
+    }
+
 })
 
 

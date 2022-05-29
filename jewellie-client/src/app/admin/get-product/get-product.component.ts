@@ -65,10 +65,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class GetProductComponent implements OnInit {
 
-  public testForm = this._formBuilder.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
-    file: ['']
-  })
+  // public testForm = this._formBuilder.group({
+  //   name: ['', [Validators.required, Validators.minLength(3)]],
+  //   file: ['']
+  // })
 
   products: any;
   product: Product=new Product();
@@ -79,13 +79,9 @@ export class GetProductComponent implements OnInit {
   // // columnsToDisplay = ['id', 'image', 'name', 'category', 'price', 'warehouse', 'edit', 'delete'];
   // dataSource = ELEMENT_DATA;
 
-  constructor(private _service: Service,private activatedRoute: ActivatedRoute, private router: Router, private _formBuilder:FormBuilder, private _toast:ToastrService
-    ) {
-      this._service = _service;
-      console.log('this._service')
-      console.log(this._service);
-     }
-     ngOnInit(): void {
+  constructor(private _service: Service,private activatedRoute: ActivatedRoute, private router: Router,  private _toast:ToastrService) {}
+
+  ngOnInit(): void {
       this.getAllProducts();
   }
   // getAllProducts(){
@@ -97,8 +93,8 @@ export class GetProductComponent implements OnInit {
   // Xử lý form update
   // Submit
   submitForm(form: NgForm){
-    if(this.product._id ==''){
 
+    if(this.product._id ==''){
       this._service.postProduct(this.product).subscribe(res => {
         // let resData=JSON.parse(JSON.stringify(res))
         if (res.message === 'success') {
@@ -129,8 +125,8 @@ export class GetProductComponent implements OnInit {
            }else{
              alert("Fail!")
           }
-    }})
-          }
+        }})
+      }
       
     }
 

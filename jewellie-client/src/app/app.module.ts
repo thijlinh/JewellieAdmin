@@ -30,6 +30,7 @@ import { AdminComponent } from './admin/admin.component';
 import { Service } from './services/services.service';
 import { GetProductComponent } from './admin/get-product/get-product.component';
 import { GetBlogComponent } from './admin/get-blog/get-blog.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -58,6 +59,7 @@ import { GetBlogComponent } from './admin/get-blog/get-blog.component';
     MatSelectModule,
     HttpClientModule,
     MatSliderModule,
+    FormsModule,
 
 
     // MatDrawerContainer,
@@ -70,8 +72,7 @@ import { GetBlogComponent } from './admin/get-blog/get-blog.component';
       progressBar: true,
       progressAnimation:'increasing',
       preventDuplicates:true
-    })
-    ,
+    }),
   ],
   providers: [Service],
   bootstrap: [AppComponent]

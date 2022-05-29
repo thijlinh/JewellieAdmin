@@ -31,8 +31,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Product } from 'src/app/models/product'
+import { Product } from 'src/app/models/product';
 import { Service } from 'src/app/services/services.service';
+import { FormBuilder, Validators } from '@angular/forms';
+
 
 // interface products {
 //   value: string;
@@ -63,24 +65,28 @@ import { Service } from 'src/app/services/services.service';
 })
 export class GetProductComponent implements OnInit {
 
+  public testForm = this._formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    file: ['']
+  })
+
   products: any;
   product: Product=new Product();
   errorMessage: string = "";
+  file: any = null;
 
   // displayedColumns: string[] = ['id', 'image', 'name', 'category', 'price', 'warehouse', 'edit', 'delete'];
   // // columnsToDisplay = ['id', 'image', 'name', 'category', 'price', 'warehouse', 'edit', 'delete'];
   // dataSource = ELEMENT_DATA;
 
-  // constructor(private _service: Service, private _toast:ToastrService
-  //   ) {
-  //     this._service = _service;
-  //     console.log('this._service')
-  //     console.log(this._service)
-  //    }
-
-  constructor( private activatedRoute: ActivatedRoute, private router: Router, private _service:Service, private _toastr: ToastrService) { }
-  ngOnInit(): void {
-    this.getAllProducts();
+  constructor(private _service: Service,private activatedRoute: ActivatedRoute, private router: Router, private _formBuilder:FormBuilder, private _toast:ToastrService
+    ) {
+      this._service = _service;
+      console.log('this._service')
+      console.log(this._service);
+     }
+     ngOnInit(): void {
+      this.getAllProducts();
   }
   // getAllProducts(){
   //   this._service.getProducts().subscribe({
@@ -90,16 +96,15 @@ export class GetProductComponent implements OnInit {
 
   // Xử lý form update
   // Submit
-  submitForm(form: NgForm) {
-    // console.log("form: ", form.value)
-    // console.log(this.product)
-    if (this.product._id == '') {
+  submitForm(form: NgForm){
+    if(this.product._id ==''){
+
       this._service.postProduct(this.product).subscribe(res => {
         // let resData=JSON.parse(JSON.stringify(res))
         if (res.message === 'success') {
 
           // console.log('success');
-          this._toastr.warning('Inserted successfully', 'Success!')
+          this._toast.warning('Inserted successfully', 'Success!')
           this.getAllProducts();
         }
         else {
@@ -113,17 +118,30 @@ export class GetProductComponent implements OnInit {
         if (resData.message === 'success') {
          
           // alert('success');
-          this._toastr.success('Update successfully', 'Update!')
+          this._toast.success('Update successfully', 'Update!')
 
           this.onReset()
           this.getAllProducts()
-        }
-        else {
-          alert(resData.message);
-        }
-      })
+        let resData = JSON.parse(JSON.stringify(res));
+           if (resData.message === "success"){
+            this._toast.success("Insert Successfully!", "Success!");
+             this.getAllProducts();
+           }else{
+             alert("Fail!")
+          }
+    }})
+          }
+      
     }
-  }
+
+    onSelectFile(event:any){
+      if ( event.target.files.length > 0){
+        // console.log("File info: ",event.target.files[0])
+        this.file = event.target.files[0];
+      }else{
+        this.file = null;
+      }
+      }
   // Nút edit 
   onEdit(data: Product) {
       this.product=data;
@@ -141,7 +159,7 @@ export class GetProductComponent implements OnInit {
         let resData = JSON.parse(JSON.stringify(res));
         if (resData.message === 'success') {
           // alert('Delete successfully');
-          this._toastr.success('Delete successfully','Delete!')
+          this._toast.success('Delete successfully','Delete!')
 
           this.onReset(form)
           this.getAllProducts()

@@ -1,10 +1,13 @@
-  .btn-select, .btn-status{
-    background-color: white;
-    padding: 10px 40px;
-    border-radius: 10px;
-    margin-right: 20px;
-    border: 1px solid #653F37;
-  }
+.input-product{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+  
+  
+  
+  
+
   .btn-filter{
     color: white;
     background-color: #653F37;

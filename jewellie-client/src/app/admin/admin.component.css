@@ -1,86 +1,69 @@
 .drawer-container {
-    /* width: 100%;
-    height: 100%; */
-
     width: 100vw;
     height: 100vh;
-    /* border: 1px solid rgba(0, 0, 0, 0.5); */
-
   }
-  
-  .sidenav-content {
+  .sidenav-header{
     display: flex;
-    width: 95%;
-    height: 40px;
-    margin-left: 20px;
-    margin-top: 20px;
-  }
-  
-  .sidenav {
-    padding: 20px;
-    background-color: #653F37;
-    color: white;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 30px;
   }
   .btn-menu{
-      border: 0px;
-      color: white;
-      background-color: #653F37;
+    height: 40px;
+    background-color: #653F37;
+    color: white;
+    border: 0px;
   }
-  .search-bar[type=text] {
-    float: right;
-    padding: 6px;
-    border: none;
-    margin-left: 16px;
+  .search-bar{
+    padding: 6px 10px;
+    background: rgb(235, 234, 234);
     font-size: 17px;
-    border: 1px black ;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+  }
+  .account-image{
+      width: 50px;
+      border-radius: 50%;
+  }
+
+  .info-bar{
+    display: flex;
+    justify-content: space-between;
+    margin: auto 10px;
+  }
+  .btn-add, .btn-watch{
+    background-color: #653F37;
+    color: white;
+    padding: 10px 30px;
     border-radius: 10px;
-    border: 1px solid #653F37;
+    border: 0px;
   }
-  @media screen and (max-width: 600px){
-    .search-bar[type=text] {
-        float: none;
-        display: block;
-        text-align: left;
-        padding: 6px;
-        margin-top: 0;
-      }
+  .sidenav{
+    padding: 20px;
+    background-color: #653F37;
   }
-  .icon-account{
-      font-size: 40px;
-      margin-right: 10px;
-      
-  }
-  .name-account{
-    font-size: 15px;
+  .logo{
+    width: 70px;
+    height: 70px;
+    display: block;
     margin-left: auto;
-    margin-right: 5px;
-    margin-top: 7px;
+    margin-right: auto;
+    margin-top: 10px;
+    border: #966156 solid 2px;
   }
-  .btn-add{
-      float: right;
-      border: 0px;
-      color: white;
-      background-color: #653F37;
-      padding: 10px 40px;
-      border-radius: 10px;
-      margin-left: 20px;
-  }
-  .btn-watch{
-      float: right;
-      border: 0px;
-      color: white;
-      background-color: #653F37;
-      padding: 10px 40px;
-      border-radius: 10px;
+  .title{
+    color: white;
+    margin-top: 20px;
   }
   .btn-side{
-    width: 100%;
     background-color: #653F37;
-    border: none;
     color: white;
-    text-align: left;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    border: 0px;
   }
-  .btn-side:active{
-    background-color: #301e1a;
-    width: 100%;
+  .btn-side:hover{
+    background-color: #462c27;
   }

@@ -70,6 +70,8 @@ export class GetProductComponent implements OnInit {
   //   file: ['']
   // })
 
+  showFiller = false;
+
   products: any;
   product: Product=new Product();
   errorMessage: string = "";

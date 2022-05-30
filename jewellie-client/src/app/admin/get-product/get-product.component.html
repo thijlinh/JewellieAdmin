@@ -1,7 +1,15 @@
+
+<div>
+  <div class="info-bar">
+      <span>Sản phẩm: Tất cả (42)</span>
+      <div class="button-bar">
+          <button mat-raised-button class="btn-watch" color="primary">Xem trước</button>
+      </div>
+  </div>
+</div>
 <div  class="container" style="width: 100%;" >
         <!-- Title -->
         <h4 class="text-center" style="font-size: 20px;">THÊM SỬA SẢN PHẨM</h4>
-
         <!-- Form -->
         <form  #productForm="ngForm" (ngSubmit)="submitForm(productForm)"> 
           <input type="hidden"  name="_id" [(ngModel)]="product._id"/>
@@ -25,20 +33,10 @@
             </div>
           </div>
           <hr>
-         
-          
-
-        
-        <!-- Submit và reset -->
-          
         </form>
-        
     </div>
 
-
-
-
- <div style="margin-left: 20px; margin-right: 40px; margin-top: 30px; display: flex">
+ <!-- <div style="margin-left: 20px; margin-right: 40px; margin-top: 30px; display: flex">
     <div class="dropdown">
       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Chọn danh mục
       <span class="caret"></span></button>
@@ -51,16 +49,29 @@
       </ul>
     </div>
     <button mat-raised-button class="btn-filter" color="primary">Lọc</button>
+  </div> -->
+  <div class="filter-bar">
+    <div class="category-box">
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Danh mục</option>
+      <option value="daychuyen">Dây chuyền</option>
+      <option value="lacbac">Lắc bạc</option>
+      <option value="nhan">Nhẫn</option>
+      <option value="bongtai">Bông tai</option>
+    </select>
   </div>
+  <button mat-raised-button class="btn-filter" color="primary">Lọc</button>
+  </div>
+  
+  
 
   <!-- Product List Table -->
   <div class="list-product">
-
     <table class="table table-striped" width="100%">
       <thead>
         <tr>
           <th>ID</th>
-          <th>Hình</th>
+          <th  >Hình</th>
           <th>Tên</th>
           <th>Danh muc</th>
           <th>Giá</th>
@@ -71,12 +82,12 @@
       <tbody>
         <tr *ngFor="let product of products; let i = index">
           <td scope="row" class="font-weight-bold">{{ i + 1 }}</td>
-            <td> <img class="img-scale" src="{{product.thumbPath}}"></td>
+            <td> <img class="img-scale img-col" src="{{product.thumbPath}}"></td>
             <td>{{ product.ten}}</td>
             <td>{{ product.loai}}</td>
             <td>{{ product.gia}}</td>
             <td><i class="bi bi-pencil-square" (click)="onEdit(product)"></i></td>
-            <td><i class="bi bi-trash" (click)="onDelete(product._id, productForm)"></i></td>
+            <td><i class="bi bi-trash" style="cursor: pointer" (click)="onDelete(product._id, productForm)"></i></td>
         </tr>
       </tbody>
     </table>

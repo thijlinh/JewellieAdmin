@@ -1,6 +1,7 @@
 .drawer-container {
     width: 100vw;
     height: 100vh;
+    background-color: rgb(243, 243, 243);
   }
   .sidenav-header{
     display: flex;
@@ -26,6 +27,12 @@
   .account-image{
       width: 50px;
       border-radius: 50%;
+      margin-right: 10px;
+  }
+  .btn-logout{
+    color: #653F37;
+    background-color: rgb(243, 243, 243);
+    border: 0px;
   }
 
   .info-bar{

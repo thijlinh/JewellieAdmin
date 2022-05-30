@@ -4,12 +4,11 @@
         <!-- SIDE BAR-->
         <mat-drawer #drawer class="sidenav" mode="side">
             <div >
-                <img class="logo"  src="assets\img\Logo Jewellie.png">
+                <img class="logo" src="assets\img\Logo Jewellie.png">
             </div>
             <h2 class="title">ADMIN PAGE</h2>
             <button  class="btn-side" type="button"
-                    routerLink="/get-product" routerLinkActive="active">Quản
-                    lý sản phẩm</button>
+                    routerLink="/get-product" routerLinkActive="active">Quản lý sản phẩm</button>
                     <br>
             <button class="btn-side btn-blog" type="button" routerLink="/get-blog"
                     routerLinkActive="active">Quản lý Blog</button>
@@ -22,24 +21,21 @@
                     <mat-icon>menu</mat-icon>
                 </button>
                 <input class="search-bar" type="text" placeholder="Tìm kiếm">
-                <img class="account-image" src="assets\img\Account.jpg">
-            </div>
-            <div>
-                <hr>
-                <div class="info-bar">
-                    <span>Sản phẩm: Tất cả (42)</span>
-                    <div class="button-bar">
-                        <button mat-raised-button class="btn-watch" color="primary">Xem
-                        trước</button>
-                    </div>
-                    
+                <div style="display: flex; align-items: stretch;">
+                    <img class="account-image" src="assets\img\Account.jpg">
+                    <button class="btn-logout" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button routerLink="/signin" routerLinkActive="active" mat-menu-item>
+                        <span>Logout</span>
+                        </button>
+                    </mat-menu>
                 </div>
+                
             </div>
-
+            <hr>
             <div><router-outlet></router-outlet></div>
-
-
         </div>
     </mat-drawer-container>
-
 </div>

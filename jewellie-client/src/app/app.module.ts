@@ -12,6 +12,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
+import { MatMenuModule} from '@angular/material/menu';
 
 import { MatSliderModule } from '@angular/material/slider';
 // import { MatDrawerContainer } from '@angular/material/sidenav';
@@ -58,6 +59,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     MatSliderModule,
     FormsModule,
+    MatMenuModule,
 
 
     // MatDrawerContainer,

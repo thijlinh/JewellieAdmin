@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -6,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/models/product';
 import { Service } from 'src/app/services/services.service';
 // import { FormBuilder, Validators } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-get-product',
@@ -19,6 +20,8 @@ export class GetProductComponent implements OnInit {
   //   name: ['', [Validators.required, Validators.minLength(3)]],
   //   file: ['']
   // })
+
+
 
   showFiller = false;
 

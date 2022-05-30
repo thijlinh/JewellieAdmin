@@ -1,27 +1,67 @@
-    <!-- Product List Table -->
-    <div class="list-blog">
-  
-      <!-- <table class="table table-striped" width="100%">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Tên bài viết</th>
-            <th>Nội dung</th>
-            <th>Ngày đăng</th>
-            <th>Tác giả</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let blog of blogs; let i = index">
-            <td scope="row" class="font-weight-bold">{{ i + 1 }}</td>
-            <td>{{ blog.Title}}</td>
-            <td>{{ blog.Content}}</td>
-            <td>{{ blog.Date}}</td>
-            <td>{{ blog.Author}}</td>
-            <td><i class="bi bi-pencil-square"></i></td>
-            <td><i class="bi bi-trash"></i></td>
-          </tr>
-        </tbody>
-      </table> -->
-      Blog page
+<div class="container" style="width: 100%;" >
+  <div class="row">
+    <div class="col-md-3">
+      <div class="container-fluid">
+        <h4 class="text-center">THÊM SỬA BÀI VIẾT</h4>
+        <form  #blogForm ="ngForm" (ngSubmit)="submitForm(blogForm)"> 
+          <input type="hidden"  name="_id" [(ngModel)]="blog._id"/>
+          <div class="mb-3">
+            <label for="title">Title:</label>
+            <input type="text"  id="title" placeholder="Enter blog title" class="form-control"  name="title" [(ngModel)]="blog.title"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="content">Content:</label>
+            <input type="text" id="content" class="form-control" name="content" placeholder="Enter content"  [(ngModel)]="blog.content" />
+          </div>
+        
+          <div class="mb-3 text-end">
+            <button class="btn btn-dark" style="background-color: #172D44; border-color: #172D44;" type="submit">Submit</button>
+            <button class="btn btn-secondary ms-2" type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
     </div>
+ <div style="margin-left: 20px; margin-right: 40px; margin-top: 30px; display: flex">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Chọn danh mục
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <li><a href="#">Dây Chuyền</a></li>
+        <li><a href="#">Lắc Bạc</a></li>
+        <li><a href="#">Nhẫn</a></li>
+        <li><a href="#">Bông tai</a></li>
+      </ul>
+    </div>
+    <button mat-raised-button class="btn-filter" color="primary">Lọc</button>
+  </div>
+
+  <!-- Product List Table -->
+  <div class="list-product">
+
+    <table class="table table-striped" width="100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tiêu đề</th>
+          <th>Nội dung</th>
+          <th>Ngày tạo</th>
+          <th>Người tạo</th>
+          <th>Sửa</th>
+          <th>Xóa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of blogs; let i = index">
+          <td scope="row" class="font-weight-bold">{{ i + 1 }}</td>
+            <td>{{ blog.title}}</td>
+            <td>{{ blog.content}}</td>
+            <td>{{ blog.createdDate}}</td>
+            <td>{{ blog.createdBy}}</td>
+            <td><i class="bi bi-pencil-square" (click)="onEdit(blog)"></i></td>
+            <td><i class="bi bi-trash" (click)="onDelete(blog._id, blogForm)"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

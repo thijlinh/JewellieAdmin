@@ -6,6 +6,8 @@ import { Product } from '../models/product';
 
 import { IUser } from '../interfaces/User';
 import { User } from '../models/users';
+import { Blog } from '../models/blogs';
+import { IBlog } from '../interfaces/Blog';
 
 const baseUrl = "http://localhost:5000";
 
@@ -16,7 +18,7 @@ export class Service {
 
   
   constructor(private _http: HttpClient) { }
-// Dữ liệu trả về Observable
+// Dữ liệu products trả về Observable
   getProducts(): Observable<IProduct[]>{
     return this._http.get<IProduct[]>(`${baseUrl}/products`).pipe(
       retry(2),
@@ -39,13 +41,7 @@ export class Service {
 
   }
  
-  uploadData(data: any){
-    return this._http.post(`${baseUrl}/upload`, data).pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
-    
-  }
+ 
 
 
   getAllProducts(){
@@ -55,15 +51,55 @@ export class Service {
     )
   }
   
-  handleError(error: HttpErrorResponse) {
-    return throwError(() => new Error(error.message))
-  }
 
   // ******************* USER *************************
 
   // Post User
   authenticate(data: User): Observable<any> {
     return this._http.post<User>(`${baseUrl}/authenticate`,data)
+  }
+
+  //*****************BLOG************************** */
+  // Dữ liệu blogs trả về Observable
+  getBlogs(): Observable<IBlog[]>{
+    return this._http.get<IBlog[]>(`${baseUrl}/blogs`).pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
+    
+  // Post Blog
+  postBlog(data: Blog): Observable<any> {
+    return this._http.post<Blog>(`${baseUrl}/blog`,data)
+  }
+  // Update blog
+  updateBlog(id: number, newData: Blog): Observable<any> { 
+    return this._http.patch(`${baseUrl}/${id}`,newData)
+  }
+  // Delete
+  deleteBlog(id: string){
+    return this._http.delete(`${baseUrl}/${id}`)
+
+  }
+
+  getAllBlogs(){
+    return this._http.get(`${baseUrl}/blogs`).pipe(
+    retry(2),
+    catchError(this.handleError)
+    )
+  }
+
+  handleError(error: HttpErrorResponse) {
+    return throwError(() => new Error(error.message))
+  }
+
+
+  uploadData(data: any){
+    return this._http.post(`${baseUrl}/upload`, data).pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+    
   }
 
 }

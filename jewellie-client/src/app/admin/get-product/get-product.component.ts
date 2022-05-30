@@ -1,31 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-
-
-// @Component({
-//   selector: 'app-get-product',
-//   templateUrl: './get-product.component.html',
-//   styleUrls: ['./get-product.component.css']
-// })
-
-
-// export class GetProductComponent implements OnInit {
-
-//   foods: Category[] = [
-//     {value: 'category-0', viewValue: 'Category 1'},
-//     {value: 'category-1', viewValue: 'Category 2'},
-//     {value: 'category-2', viewValue: 'Category 3'},
-//   ];
-
-
-  
-//   constructor() {
-//    }
-
-//   ngOnInit(): void {
-//   }
-
-// }
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -33,30 +5,8 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/models/product';
 import { Service } from 'src/app/services/services.service';
-import { FormBuilder, Validators } from '@angular/forms';
+// import { FormBuilder, Validators } from '@angular/forms';
 
-
-// interface products {
-//   value: string;
-//   viewValue: string;
-// }
-
-// export interface PeriodicElement {
-//   id: number;
-//   image: string;
-//   name: string;
-//   category: string;
-//   price: string;
-//   warehouse: string;
-//   edit: string;
-//   delete: string;
-
-// }
-
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {id: 1, image: '', name: "", category: '', price: "", warehouse: "", edit: "", delete: ""},
-// ];
 @Component({
   selector: 'app-get-product',
   templateUrl: './get-product.component.html',
@@ -75,11 +25,7 @@ export class GetProductComponent implements OnInit {
   errorMessage: string = "";
   file: any = null;
 
-  // displayedColumns: string[] = ['id', 'image', 'name', 'category', 'price', 'warehouse', 'edit', 'delete'];
-  // // columnsToDisplay = ['id', 'image', 'name', 'category', 'price', 'warehouse', 'edit', 'delete'];
-  // dataSource = ELEMENT_DATA;
-
-  constructor(private _service: Service,private activatedRoute: ActivatedRoute, private router: Router,  private _toast:ToastrService) {}
+  constructor(private _service: Service,private activatedRoute: ActivatedRoute, private router: Router,  private _toast:ToastrService ) {}
 
   ngOnInit(): void {
       this.getAllProducts();
@@ -130,14 +76,15 @@ export class GetProductComponent implements OnInit {
       
     }
 
-    onSelectFile(event:any){
-      if ( event.target.files.length > 0){
-        // console.log("File info: ",event.target.files[0])
-        this.file = event.target.files[0];
-      }else{
-        this.file = null;
-      }
-      }
+    // onSelectFile(event:any){
+    //   if ( event.target.files.length > 0){
+    //     // console.log("File info: ",event.target.files[0])
+    //     this.file = event.target.files[0];
+    //   }else{
+    //     this.file = null;
+    //   }
+    //   }
+      
   // Nút edit 
   onEdit(data: Product) {
       this.product=data;
@@ -180,7 +127,9 @@ export class GetProductComponent implements OnInit {
   //   (<HTMLFormElement>document.getElementById("form-update")).reset();
   // }
 
-
+  // get nameInput(){
+  //   return this.testForm.controls["name"]
+  // }
 
 
 }

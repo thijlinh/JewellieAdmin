@@ -18,9 +18,10 @@ export class Service {
 
   
   constructor(private _http: HttpClient) { }
-// Dữ liệu products trả về Observable
-  getProducts(): Observable<IProduct[]>{
-    return this._http.get<IProduct[]>(`${baseUrl}/products`).pipe(
+
+// Dữ liệu trả về Observable
+  getProducts(): Observable<Product[]>{
+    return this._http.get<Product[]>(`${baseUrl}/products`).pipe(
       retry(2),
       catchError(this.handleError)
     )

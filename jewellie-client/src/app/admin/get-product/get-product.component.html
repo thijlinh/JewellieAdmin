@@ -55,7 +55,7 @@
       <tbody>
         <tr *ngFor="let product of products; let i = index">
           <td scope="row" class="font-weight-bold">{{ i + 1 }}</td>
-            <td>{{ product.hinh}}</td>
+            <td> <img class="img-scale" src="{{product.thumbPath}}"></td>
             <td>{{ product.ten}}</td>
             <td>{{ product.loai}}</td>
             <td>{{ product.gia}}</td>

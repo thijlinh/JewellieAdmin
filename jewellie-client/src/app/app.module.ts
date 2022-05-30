@@ -25,7 +25,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 
 
-import { AddProductComponent } from './add-product/add-product.component';
 import { GetBlogComponent } from 'src/app/admin/get-blog/get-blog.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AdminComponent } from './admin/admin.component';
@@ -41,7 +40,6 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     SignInComponent,
-    AddProductComponent,
     AdminComponent,
     GetBlogComponent,
     GetProductComponent, 

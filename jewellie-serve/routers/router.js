@@ -101,15 +101,11 @@ router.post('/authenticate', async function (req, res) {
 
 //******************************* BLOG **************************
 // Get all blogs
-router.get('/blogs', function (req, res) {
-    Blog.find({}, function (err, data) {
-        console.log(data)
-        if (err) {
-            res.json({message: err.message})
-        } else {
-            res.json(data)
-        }
-    })
+router.get('/blogs',(req,res)=>{
+    // res.send("Product list")
+         Blog.find({})
+    .then(data => {res.json(data)})
+    .catch(err => {err.json({"Error": err.messages})})
 })
 // Get blog by id
 router.get('/:blogId', async function (req, res) {
@@ -129,8 +125,6 @@ router.post('/blog', async function (req, res) {
     let blog = new Blog({
         title: req.body.title,
         content: req.body.content,
-        createdDate:req.body.createdDate,
-        createdBy:req.body.createdBy
     })
     try {
         b = await blog.save();

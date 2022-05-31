@@ -12,20 +12,12 @@ import { Service } from 'src/app/services/services.service';
   
 })
 export class GetBlogComponent implements OnInit {
-  blogs: any;
+  blogs: Blog[]= [];
   blog: Blog=new Blog();
   errorMessage: string = "";
   
-  convertToJSON(blog: any) {
-    return JSON.parse(blog);
-}
   constructor(private _service: Service, private _toast:ToastrService
-    ) {
-      
-      this._service = _service;
-      console.log('this._service')
-      console.log(this._service)
-     }
+    ) {   }
   ngOnInit(): void {
     
     this.getAllBlogs()

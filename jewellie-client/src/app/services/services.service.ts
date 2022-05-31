@@ -62,8 +62,8 @@ export class Service {
 
   //*****************BLOG************************** */
   // Dữ liệu blogs trả về Observable
-  getBlogs(): Observable<IBlog[]>{
-    return this._http.get<IBlog[]>(`${baseUrl}/blogs`).pipe(
+  getBlogs(): Observable<Blog[]>{
+    return this._http.get<Blog[]>(`${baseUrl}/blogs`).pipe(
       retry(2),
       catchError(this.handleError)
     )

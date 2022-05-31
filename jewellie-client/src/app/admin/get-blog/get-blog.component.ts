@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import {Blog } from 'src/app/models/blog';
 import { Service } from 'src/app/services/services.service';
-import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -14,7 +13,8 @@ import { map } from 'rxjs/operators';
   
 })
 export class GetBlogComponent implements OnInit {
-  blogs: Blog[]= [];
+  // blogs:Blog[]=[];
+  blogs:any;
   blog: Blog=new Blog();
   errorMessage: string = "";
   
@@ -91,8 +91,8 @@ export class GetBlogComponent implements OnInit {
     this._service.getBlogs()
     .subscribe({
       next: data => this.blogs = data,
-      error: err => this.errorMessage = err
+      error: err => this.errorMessage = err,
     })
-    
+    console.log(this.blogs)
   }
 }

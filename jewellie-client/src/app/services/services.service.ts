@@ -3,11 +3,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { IProduct } from '../interfaces/Product';
 import { Product } from '../models/product';
-
 import { IUser } from '../interfaces/User';
 import { User } from '../models/users';
 import { Blog } from '../models/blog';
 import { IBlog } from '../interfaces/Blog';
+
 
 const baseUrl = "http://localhost:5000";
 
@@ -15,8 +15,6 @@ const baseUrl = "http://localhost:5000";
   providedIn: 'root'
 })
 export class Service {
-
-  
   constructor(private _http: HttpClient) { }
 
 // Dữ liệu trả về Observable
@@ -63,7 +61,8 @@ export class Service {
   //*****************BLOG************************** */
   // Dữ liệu blogs trả về Observable
   getBlogs(): Observable<Blog[]>{
-    return this._http.get<Blog[]>(`${baseUrl}/blogs`).pipe(
+    return this._http.get<Blog[]>(`${baseUrl}/blogs`)
+    .pipe(
       retry(2),
       catchError(this.handleError)
     )
@@ -93,4 +92,5 @@ export class Service {
   handleError(error: HttpErrorResponse) {
     return throwError(() => new Error(error.message))
   }
+
 }

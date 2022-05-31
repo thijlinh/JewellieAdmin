@@ -63,10 +63,10 @@
           <th>Xóa</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
         <tr *ngFor="let blog of blogs; let i = index">
           <td scope="row" class="font-weight-bold">{{ i + 1 }}</td>
-            <td>{{ blog.title}}</td>
+            <td>{{ blogs}}</td>
             <td>{{ blog.content}}</td>
             <td><i class="bi bi-pencil-square" (click)="onEdit(blog)"></i></td>
             <td><i class="bi bi-trash" (click)="onDelete(blog._id, blogForm)"></i></td>

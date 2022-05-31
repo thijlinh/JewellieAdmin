@@ -102,7 +102,7 @@ router.post('/authenticate', async function (req, res) {
 //******************************* BLOG **************************
 // Get all blogs
 router.get('/blogs',(req,res)=>{
-    // res.send("Product list")
+    res.send("Product list")
          Blog.find({})
     .then(data => {res.json(data)})
     .catch(err => {err.json({"Error": err.messages})})

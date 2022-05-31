@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import {Blog } from 'src/app/models/blog';
 import { Service } from 'src/app/services/services.service';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-get-blog',

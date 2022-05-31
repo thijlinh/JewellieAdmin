@@ -93,14 +93,4 @@ export class Service {
   handleError(error: HttpErrorResponse) {
     return throwError(() => new Error(error.message))
   }
-
-
-  uploadData(data: any){
-    return this._http.post(`${baseUrl}/upload`, data).pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
-    
-  }
-
 }

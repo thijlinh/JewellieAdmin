@@ -10,5 +10,6 @@ export class Product{
         this.thumbPath="";
         this.gia = 0;
         this.loai="";
+        this.thumbPath="";
     }
 }

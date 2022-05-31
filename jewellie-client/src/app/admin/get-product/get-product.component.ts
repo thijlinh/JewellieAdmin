@@ -25,15 +25,32 @@ export class GetProductComponent implements OnInit {
 
   showFiller = false;
 
-  products: any;
+  products: Product[]=[];
   product: Product=new Product();
   errorMessage: string = "";
   file: any = null;
-
+  ten:any;
   constructor(private _service: Service,private activatedRoute: ActivatedRoute, private router: Router,  private _toast:ToastrService ) {}
 
   ngOnInit(): void {
       this.getAllProducts();
+  }
+
+  key: string ='id';
+  reverse: boolean = false;
+
+  sort(key: string){
+    this.key = key;
+    this.reverse = !this.reverse
+  }
+
+  Search(){
+    if(this.ten ==""){this.ngOnInit()}
+    else {
+      this.products = this.products.filter(res => {
+        return res.ten.toLocaleLowerCase().match(this.ten.toLocaleLowerCase());
+      })
+    }
   }
   // getAllProducts(){
   //   this._service.getProducts().subscribe({

@@ -32,6 +32,8 @@ import { AdminComponent } from './admin/admin.component';
 import { Service } from './services/services.service';
 import { GetProductComponent } from './admin/get-product/get-product.component';
 import { FormsModule } from '@angular/forms';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -60,6 +62,7 @@ import { FormsModule } from '@angular/forms';
     MatSliderModule,
     FormsModule,
     MatMenuModule,
+    
 
 
     // MatDrawerContainer,
@@ -73,6 +76,10 @@ import { FormsModule } from '@angular/forms';
       progressAnimation:'increasing',
       preventDuplicates:true
     }),
+
+    Ng2OrderModule,
+    Ng2SearchPipeModule,
+    
   ],
   providers: [Service],
   bootstrap: [AppComponent]

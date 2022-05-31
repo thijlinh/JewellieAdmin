@@ -9,7 +9,7 @@
 </div>
 <div  class="container" style="width: 100%;" >
         <!-- Title -->
-        <h4 class="text-center" style="font-size: 20px;">THÊM SỬA SẢN PHẨM</h4>
+        <h4 class="text-center" style="font-size: 20px;">THÊM SẢN PHẨM</h4>
         <!-- Form -->
         <form  #productForm="ngForm" (ngSubmit)="submitForm(productForm)"> 
           <input type="hidden"  name="_id" [(ngModel)]="product._id"/>
@@ -60,8 +60,10 @@
       <option value="bongtai">Bông tai</option>
     </select>
   </div>
-  <button mat-raised-button class="btn-filter" color="primary">Lọc</button>
+  <input class="search-bar" type="text" placeholder="Tìm kiếm" [(ngModel)]="ten" (ngModelChange)="Search()">
+  <!-- <button mat-raised-button class="btn-filter" color="primary">Lọc</button> -->
   </div>
+  
   
   
 
@@ -71,8 +73,8 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th  >Hình</th>
-          <th>Tên</th>
+          <th>Hình</th>
+          <th (click)="sort(ten)">Tên</th>
           <th>Danh muc</th>
           <th>Giá</th>
           <th>Sửa</th>
@@ -80,7 +82,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products; let i = index">
+        <tr *ngFor="let product of products | orderBy: key : reverse; let i = index">
           <td scope="row" class="font-weight-bold">{{ i + 1 }}</td>
             <td> <img class="img-scale img-col" src="{{product.thumbPath}}"></td>
             <td>{{ product.ten}}</td>

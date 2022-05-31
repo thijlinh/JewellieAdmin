@@ -1,7 +1,7 @@
 export class Product{
     _id: any;
     ten: string;
-    hinh:any;
+    thumbPath:any;
     gia: number;
     loai:string;
     constructor() {
@@ -9,5 +9,6 @@ export class Product{
         this.ten = "";
         this.gia = 0;
         this.loai="";
+        this.thumbPath="";
     }
 }

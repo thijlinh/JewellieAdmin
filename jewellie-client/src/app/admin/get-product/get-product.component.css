@@ -18,6 +18,15 @@
   display: flex;
   justify-content: space-between;
 }
+.search-bar{
+  padding: 6px 10px;
+  background: rgb(235, 234, 234);
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  margin-left: 20px;
+}
 .input-product{
   display: flex;
   align-items: flex-end;

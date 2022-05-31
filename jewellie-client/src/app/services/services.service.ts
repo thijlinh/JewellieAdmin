@@ -6,7 +6,7 @@ import { Product } from '../models/product';
 
 import { IUser } from '../interfaces/User';
 import { User } from '../models/users';
-import { Blog } from '../models/blogs';
+import { Blog } from '../models/blog';
 import { IBlog } from '../interfaces/Blog';
 
 const baseUrl = "http://localhost:5000";
